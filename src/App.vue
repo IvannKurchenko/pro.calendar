@@ -1,32 +1,57 @@
 <template>
-  <h1>{{now}}</h1>
-  <h1>{{month}}</h1>
-  <h1>{{weekday}}</h1>
-  <h1>{{weekNumber}}/{{weeksInWeekYear}}</h1>
-  <h1>{{quarter}}</h1>
+  <nav class="navbar">
+    <div class="container">
+      <div id="navMenu" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>
+          <a class="navbar-item">
+            Documentation
+          </a>
+        </div>
 
-  <div class="columns">
-    <div class="column is-one-quarter">quarter 1 months column</div>
-    <div class="column is-one-quarter">quarter 2 months column</div>
-    <div class="column is-one-quarter">quarter 2 months column</div>
-    <div class="column is-one-quarter">quarter 2 months column</div>
-  </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-dark">Github</a>
+              <a class="button is-link">Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero is-fullheight-with-navbar ">
+    <div class="hero-body">
+      <div class="container">
+        {{now}}
+        <div class="columns is-centered is-flex-grow-1">
+          <div class="column" v-bind:key="halfNumber" v-bind:value="halfNumber" v-for="halfNumber in halfNumbers">
+            <HalfComponent v-bind:half="halfNumber"></HalfComponent>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 
-//import HelloWorld from './components/HelloWorld.vue'
+import HalfComponent from "./components/HalfComponent";
 
 export default {
   name: 'App',
-  data () {
-    const { DateTime } = require("luxon");
+  data() {
+    const {DateTime} = require("luxon");
 
     let dateTime = DateTime.now();
     let month = dateTime.month;
     let weekNumber = dateTime.weekNumber;
     let weeksInWeekYear = dateTime.weeksInWeekYear;
     let quarter = dateTime.quarter;
+    let halfNumbers = [1, 2];
 
 
     return {
@@ -35,17 +60,20 @@ export default {
       weekNumber: weekNumber,
       weeksInWeekYear: weeksInWeekYear,
       weekday: dateTime.weekday,
-      quarter: quarter
+      quarter: quarter,
+      halfNumbers: halfNumbers
     }
+  },
+
+  components: {
+    HalfComponent
   }
-  /*components: {
-    HelloWorld
-  }*/
 }
 </script>
 
 <style>
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
 #{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
