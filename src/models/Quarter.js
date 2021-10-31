@@ -8,8 +8,8 @@ export default class Quarter {
 
     isCurrent() {
         let now = DateTime.now();
-        let currentIsFirst = now.month / 4;
-        return currentIsFirst && this.half === 1;
+        let currentQuarter = Math.ceil(now.month / 3);
+        return currentQuarter === this.value;
     }
 
     static halfQuarter(half, quarter) {

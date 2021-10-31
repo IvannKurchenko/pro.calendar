@@ -8,7 +8,7 @@ export default class Half {
 
     isCurrent() {
         let now = DateTime.now();
-        let currentIsFirst = now.month <= 6;
-        return currentIsFirst && this.value === 1;
+        let currentHalf = now.month <= 6 ? 1 : 2;
+        return this.value === currentHalf;
     }
 }

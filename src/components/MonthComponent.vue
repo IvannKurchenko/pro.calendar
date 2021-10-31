@@ -1,5 +1,9 @@
 <template>
-  #{{value}} {{name}}
+  <div class="box m-2">
+    <h1></h1>
+    <h1 class="subtitle is-4 m-2" v-bind:class="{'has-text-primary': isCurrent}">{{ value }}. {{ name }}</h1>
+
+  </div>
 </template>
 <script>
 

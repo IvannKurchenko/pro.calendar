@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-bind:class="{'has-background-primary-light': isCurrent}" class="box">
     <div class='rows'>
       <div class='row is-full'>
-        <h1 class="title is-2">H{{ half }}</h1>
+        <h1 class="title is-2 m-2" v-bind:class="{'has-text-primary': isCurrent}">H{{ half }}</h1>
       </div>
       <div class="columns">
         <div class="column" v-bind:key="quarter" v-bind:quarter="quarter" v-for="quarter in quarters">

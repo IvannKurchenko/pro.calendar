@@ -1,10 +1,13 @@
 <template>
-  <div class="columns">
-    <div class="column">
-      <h1 class="subtitle is-3">Q{{ value }}</h1>
-      <div class="rows">
-        <div class="row" v-bind:key="month" v-bind:month="month" v-for="month in months">
-          <MonthComponent v-bind:month="month" v-bind:quarter="value"></MonthComponent>
+  <div class="box" v-bind:class="{'has-background-primary-light': isCurrent}">
+    <div class="columns">
+      <div class="column">
+        <h1 class="subtitle is-3 m-2" v-bind:class="{'has-text-primary': isCurrent}">Q{{ value }}</h1>
+        <div class="rows">
+          <div class="row" v-bind:key="month" v-bind:month="month" v-for="month in months">
+            <MonthComponent v-bind:month="month" v-bind:quarter="value">
+            </MonthComponent>
+          </div>
         </div>
       </div>
     </div>
