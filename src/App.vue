@@ -26,10 +26,11 @@
   <section class="hero is-fullheight-with-navbar ">
     <div class="hero-body">
       <div class="container">
-        {{now}}
+        {{ now }}
         <div class="columns is-centered is-flex-grow-1">
           <div class="column" v-bind:key="halfNumber" v-bind:value="halfNumber" v-for="halfNumber in halfNumbers">
-            <HalfComponent v-bind:half="halfNumber"></HalfComponent>
+            <HalfComponent v-bind:year="year" v-bind:half="halfNumber">
+            </HalfComponent>
           </div>
         </div>
       </div>
@@ -46,6 +47,7 @@ export default {
   data() {
     const {DateTime} = require("luxon");
 
+    let now = DateTime.now();
     let dateTime = DateTime.now();
     let month = dateTime.month;
     let weekNumber = dateTime.weekNumber;
@@ -53,9 +55,9 @@ export default {
     let quarter = dateTime.quarter;
     let halfNumbers = [1, 2];
 
-
     return {
       now: DateTime.now(),
+      year: now.year,
       month: month,
       weekNumber: weekNumber,
       weeksInWeekYear: weeksInWeekYear,
@@ -74,9 +76,17 @@ export default {
 <style>
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+#app{
+  font-size: 10px;
+}
+
 #{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.is-text-align-center {
+  text-align: center;
 }
 </style>

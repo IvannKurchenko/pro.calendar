@@ -1,9 +1,14 @@
 const {DateTime} = require("luxon");
 
+/**
+ * Model representing quarter of year.
+ */
 export default class Quarter {
 
-    constructor(value) {
-        this.value = value;
+    constructor(year, half, quarter) {
+        this.year = year;
+        this.half = half;
+        this.value = quarter;
     }
 
     isCurrent() {
@@ -12,8 +17,11 @@ export default class Quarter {
         return currentQuarter === this.value;
     }
 
-    static halfQuarter(half, quarter) {
-        let shift = half === 1 ? 0 : 2;
-        return new Quarter(shift + quarter);
+    /**
+     * Create quarter model relatively to year half
+     */
+    static halfQuarter(year, half, quarter) {
+        let value = (half === 1 ? 0 : 2) + quarter;
+        return new Quarter(year, half, value);
     }
 }

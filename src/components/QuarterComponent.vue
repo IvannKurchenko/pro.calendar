@@ -2,10 +2,10 @@
   <div class="box" v-bind:class="{'has-background-primary-light': isCurrent}">
     <div class="columns">
       <div class="column">
-        <h1 class="subtitle is-3 m-2" v-bind:class="{'has-text-primary': isCurrent}">Q{{ value }}</h1>
+        <h1 class="subtitle is-3 m-2 is-text-align-center" v-bind:class="{'has-text-primary': isCurrent}">Q{{ value }}</h1>
         <div class="rows">
           <div class="row" v-bind:key="month" v-bind:month="month" v-for="month in months">
-            <MonthComponent v-bind:month="month" v-bind:quarter="value">
+            <MonthComponent v-bind:year="year" v-bind:quarter="value" v-bind:month="month">
             </MonthComponent>
           </div>
         </div>
@@ -21,10 +21,10 @@ import Quarter from "../models/Quarter";
 
 export default {
   name: 'QuarterComponent',
-  props: ['half', 'quarter'],
+  props: ['year', 'half', 'quarter'],
 
   data() {
-    let quarter = Quarter.halfQuarter(this.half, this.quarter)
+    let quarter = Quarter.halfQuarter(this.year, this.half, this.quarter)
     let months = [1, 2, 3];
 
     return {
