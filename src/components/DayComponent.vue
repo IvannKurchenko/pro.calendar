@@ -1,7 +1,9 @@
 <template>
-  <span v-bind:class="{'has-text-grey-light': !isCurrentMonth, 'has-text-danger' : isWeekend}">
+  <div v-bind:class="{'has-text-grey-light': !isCurrentMonth,
+                      'has-text-danger': isWeekend,
+                      'is-text-align-center border-radius-6 has-text-weight-bold has-background-success-light has-text-success-dark': isCurrent}">
     {{ value }}
-  </span>
+  </div>
 </template>
 
 <script>
@@ -26,4 +28,7 @@ export default {
 </script>
 
 <style>
+.border-radius-6{
+  border-radius: 6px;
+}
 </style>

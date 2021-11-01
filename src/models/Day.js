@@ -27,7 +27,7 @@ export default class Day {
     }
 
     isCurrent() {
-        let weekday = this.date.weekday;
-        return weekday === 6 || weekday === 7;
+        let now = DateTime.now();
+        return now.day === this.value && now.month === this.month && this.year === this.year;
     }
 }
