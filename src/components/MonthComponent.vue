@@ -15,13 +15,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr class="row" v-bind:class="{'is-selected': week.isCurrent()}" v-bind:key="week" v-for="week in weeks">
-        <th>{{ week.value }}</th>
-        <td class="row" v-bind:key="day" v-for="day in week.days()">
-          <DayComponent v-bind:year="day.year"
-                        v-bind:month="day.month"
-                        v-bind:scopeMonth="day.scopeMonth"
-                        v-bind:day="day.value"></DayComponent>
+      <tr class="row"
+          v-bind:class="{'is-selected': week.isCurrent(), 'zero-opacity': week.isStub()}"
+          v-bind:key="week" v-for="week in weeks">
+        <th v-bind:class="{'border-none': week.isStub()}">{{ week.value }}</th>
+        <td class="row"
+            v-bind:class="{'border-none': week.isStub()}"
+            v-bind:key="day" v-for="day in week.days()">
+          <DayComponent v-bind:day="day"></DayComponent>
         </td>
       </tr>
       </tbody>

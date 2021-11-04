@@ -8,20 +8,16 @@
 
 <script>
 
-import Day from "../models/Day";
-
 export default {
   name: 'DayComponent',
-  props: ['year', 'month', 'day', 'scopeMonth'],
+  props: ['day'],
 
   data() {
-    let day = new Day(this.year, this.month, this.scopeMonth, this.day);
-
     return {
-      value: this.day,
-      isCurrentMonth: day.isInMonthScope(),
-      isCurrent: day.isCurrent(),
-      isWeekend: day.isWeekend()
+      value: this.day.value,
+      isCurrentMonth: this.day.isInMonthScope(),
+      isCurrent: this.day.isCurrent(),
+      isWeekend: this.day.isWeekend()
     }
   }
 }

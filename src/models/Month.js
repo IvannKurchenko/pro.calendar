@@ -1,4 +1,5 @@
 import Week from "./Week";
+import StubWeek from "./StubWeek";
 
 const {DateTime} = require("luxon");
 
@@ -55,11 +56,19 @@ export default class Month {
 
         let weeks;
 
+        let left;
         if (startWeek > endWeek) {
             weeks = range(1, endWeek);
             weeks.unshift(new Week(this.year - 1, 12, startWeek))
+            left = endWeek;
         } else {
             weeks = range(startWeek, endWeek);
+            left = endWeek - startWeek;
+        }
+
+        //TODO: It should be not 5 but max weeks among months in year
+        for(let i = left; i < 5; i++) {
+            weeks.push(new StubWeek());
         }
 
         return weeks;

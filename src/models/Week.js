@@ -13,6 +13,10 @@ export default class Week {
         this.value = value;
     }
 
+    isStub() {
+        return false;
+    }
+
     days() {
         let self = this;
         const range = function (from, to) {

@@ -2,20 +2,12 @@
   <nav class="navbar">
     <div class="container">
       <div id="navMenu" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-          <a class="navbar-item">
-            Documentation
-          </a>
-        </div>
-
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-dark">Github</a>
-              <a class="button is-link">Download</a>
+              <a href="https://github.com/IvannKurchenko/pro.calendar">
+                <img src="gihub-icon.png">
+              </a>
             </div>
           </div>
         </div>
@@ -88,5 +80,13 @@ export default {
 
 .is-text-align-center {
   text-align: center;
+}
+
+.zero-opacity {
+  opacity: 0;
+}
+
+.border-none {
+  border: none !important;
 }
 </style>
