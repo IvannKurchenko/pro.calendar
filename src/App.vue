@@ -18,7 +18,29 @@
   <section class="hero is-fullheight-with-navbar ">
     <div class="hero-body">
       <div class="container">
-        {{ now }}
+        <div class="">
+          <div>
+            <h1 class="title is-2 m-2 is-text-align-center">Y{{ year }}</h1>
+          </div>
+          <div class="columns is-centered is-flex-grow-1">
+            <div class="column">
+              <h1 class="title is-5 m-2 is-text-align-center">Left in Year</h1>
+              <div class="columns">
+                <div class="column"><h1 class="subtitle is-6">Weeks: {{ yearWeeksLeft }}</h1></div>
+                <div class="column"><h1 class="subtitle is-6">Work days: {{ yearWorkDaysLeft }}</h1></div>
+                <div class="column"><h1 class="subtitle is-6">Weekends days: {{ yearWeekendsDaysLeft }}</h1></div>
+              </div>
+            </div>
+            <div class="column">
+              <h1 class="title is-5 m-2 is-text-align-center">Left in Quarter</h1>
+              <div class="columns">
+                <div class="column"><h1 class="subtitle is-6">Weeks: {{ yearWeeksLeft }}</h1></div>
+                <div class="column"><h1 class="subtitle is-6">Work days: {{ yearWorkDaysLeft }}</h1></div>
+                <div class="column"><h1 class="subtitle is-6">Weekends days: {{ yearWeekendsDaysLeft }}</h1></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="columns is-centered is-flex-grow-1">
           <div class="column" v-bind:key="halfNumber" v-bind:value="halfNumber" v-for="halfNumber in halfNumbers">
             <HalfComponent v-bind:year="year" v-bind:half="halfNumber">
@@ -40,21 +62,17 @@ export default {
     const {DateTime} = require("luxon");
 
     let now = DateTime.now();
-    let dateTime = DateTime.now();
-    let month = dateTime.month;
-    let weekNumber = dateTime.weekNumber;
-    let weeksInWeekYear = dateTime.weeksInWeekYear;
-    let quarter = dateTime.quarter;
+    let yearWeeksLeft = now.weeksInWeekYear - now.weekNumber;
+    let yearWorkDaysLeft = "TODO";
+    let yearWeekendsDaysLeft = "TODO";
     let halfNumbers = [1, 2];
 
     return {
-      now: DateTime.now(),
+      now: now,
       year: now.year,
-      month: month,
-      weekNumber: weekNumber,
-      weeksInWeekYear: weeksInWeekYear,
-      weekday: dateTime.weekday,
-      quarter: quarter,
+      yearWeeksLeft: yearWeeksLeft,
+      yearWorkDaysLeft: yearWorkDaysLeft,
+      yearWeekendsDaysLeft: yearWeekendsDaysLeft,
       halfNumbers: halfNumbers
     }
   },
