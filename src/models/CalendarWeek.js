@@ -1,11 +1,11 @@
-import Day from "./Day";
+import CalendarDay from "./CalendarDay";
 
 const {DateTime} = require("luxon");
 
 /**
  * Model representing year week
  */
-export default class Week {
+export default class CalendarWeek {
 
     constructor(year, month, value) {
         this.year = year;
@@ -23,7 +23,7 @@ export default class Week {
             let array = []
             for (let day = from; day <= to; day++) {
                 let date = DateTime.fromObject({weekYear: self.year, weekNumber: self.value}).plus({days: day});
-                let dayModel = new Day(date.year, date.month, self.month, date.day);
+                let dayModel = new CalendarDay(date.year, date.month, self.month, date.day);
                 array.push(dayModel);
             }
             return array;

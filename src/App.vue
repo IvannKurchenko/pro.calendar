@@ -20,24 +20,11 @@
       <div class="container">
         <div class="">
           <div>
-            <h1 class="title is-2 m-2 is-text-align-center">Y{{ year }}</h1>
+            <h1 class="title is-2 m-2 is-text-align-center">Y{{ year.value }}</h1>
           </div>
-          <div class="columns is-centered is-flex-grow-1">
+          <div class="columns is-centered is-flex-grow-1 m-2">
             <div class="column">
-              <h1 class="title is-5 m-2 is-text-align-center">Left in Year</h1>
-              <div class="columns">
-                <div class="column"><h1 class="subtitle is-6">Weeks: {{ yearWeeksLeft }}</h1></div>
-                <div class="column"><h1 class="subtitle is-6">Work days: {{ yearWorkDaysLeft }}</h1></div>
-                <div class="column"><h1 class="subtitle is-6">Weekends days: {{ yearWeekendsDaysLeft }}</h1></div>
-              </div>
-            </div>
-            <div class="column">
-              <h1 class="title is-5 m-2 is-text-align-center">Left in Quarter</h1>
-              <div class="columns">
-                <div class="column"><h1 class="subtitle is-6">Weeks: {{ yearWeeksLeft }}</h1></div>
-                <div class="column"><h1 class="subtitle is-6">Work days: {{ yearWorkDaysLeft }}</h1></div>
-                <div class="column"><h1 class="subtitle is-6">Weekends days: {{ yearWeekendsDaysLeft }}</h1></div>
-              </div>
+              <SummaryComponent v-bind:summary="summary"></SummaryComponent>
             </div>
           </div>
         </div>
@@ -55,7 +42,8 @@
 <script>
 
 import HalfComponent from "./components/HalfComponent";
-import Year from "./models/Year";
+import CalendarYear from "./models/CalendarYear";
+import SummaryComponent from "./components/SummaryComponent";
 
 export default {
   name: 'App',
@@ -63,23 +51,19 @@ export default {
     const {DateTime} = require("luxon");
 
     let now = DateTime.now();
-    let yearWeeksLeft = now.weeksInWeekYear - now.weekNumber;
-    let yearWorkDaysLeft = "TODO";
-    let yearWeekendsDaysLeft = "TODO";
-
-    let year = new Year(now.year);
+    let year = new CalendarYear(now.year);
 
     return {
       year: year,
-      yearWeeksLeft: yearWeeksLeft,
-      yearWorkDaysLeft: yearWorkDaysLeft,
-      yearWeekendsDaysLeft: yearWeekendsDaysLeft,
+      summary: year.summary(),
+      halfSummary: year.currentHalf().summary(),
       halfs: year.halfs()
     }
   },
 
   components: {
-    HalfComponent
+    HalfComponent,
+    SummaryComponent
   }
 }
 </script>
@@ -107,5 +91,9 @@ export default {
 
 .border-none {
   border: none !important;
+}
+
+.min-width-150 {
+  min-width: 150px;
 }
 </style>

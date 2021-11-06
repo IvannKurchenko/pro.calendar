@@ -3,7 +3,7 @@ const {DateTime} = require("luxon");
 /**
  * Model representing day of month and year.
  */
-export default class Day {
+export default class CalendarDay {
 
     constructor(year, month, scopeMonth, value) {
         this.year = year;

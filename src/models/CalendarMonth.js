@@ -1,4 +1,4 @@
-import Week from "./Week";
+import CalendarWeek from "./CalendarWeek";
 import StubWeek from "./StubWeek";
 
 const {DateTime} = require("luxon");
@@ -6,7 +6,7 @@ const {DateTime} = require("luxon");
 /**
  * Model representing month of year.
  */
-export default class Month {
+export default class CalendarMonth {
 
     constructor(year, half, quarter, value) {
         this.year = year;
@@ -50,7 +50,7 @@ export default class Month {
         const range = function (from, to) {
             let array = []
             for (let week = from; week <= to; week++) {
-                array.push(new Week(self.year, self.value, week));
+                array.push(new CalendarWeek(self.year, self.value, week));
             }
             return array;
         };
@@ -60,7 +60,7 @@ export default class Month {
         let left;
         if (startWeek > endWeek) {
             weeks = range(1, endWeek);
-            weeks.unshift(new Week(this.year - 1, 12, startWeek))
+            weeks.unshift(new CalendarWeek(this.year - 1, 12, startWeek))
             left = endWeek;
         } else {
             weeks = range(startWeek, endWeek);
@@ -85,6 +85,6 @@ export default class Month {
     static quarterMonth(year, half, quarter, month) {
         let shift = (quarter - 1) * 3;
         let value = shift + month;
-        return new Month(year, half, quarter, value);
+        return new CalendarMonth(year, half, quarter, value);
     }
 }

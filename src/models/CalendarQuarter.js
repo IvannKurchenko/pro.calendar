@@ -1,11 +1,11 @@
-import Month from "./Month";
+import CalendarMonth from "./CalendarMonth";
 
 const {DateTime} = require("luxon");
 
 /**
  * Model representing quarter of year.
  */
-export default class Quarter {
+export default class CalendarQuarter {
 
     constructor(year, half, quarter) {
         this.year = year;
@@ -15,9 +15,9 @@ export default class Quarter {
 
     months() {
         return [
-            Month.quarterMonth(this.year, this.half, this.value, 1),
-            Month.quarterMonth(this.year, this.half, this.value, 2),
-            Month.quarterMonth(this.year, this.half, this.value, 3),
+            CalendarMonth.quarterMonth(this.year, this.half, this.value, 1),
+            CalendarMonth.quarterMonth(this.year, this.half, this.value, 2),
+            CalendarMonth.quarterMonth(this.year, this.half, this.value, 3),
         ];
     }
 
@@ -28,11 +28,15 @@ export default class Quarter {
         return currentQuarter === this.value;
     }
 
+    weeksLeft() {
+
+    }
+
     /**
      * Create quarter model relatively to year half
      */
     static halfQuarter(year, half, quarter) {
         let value = (half === 1 ? 0 : 2) + quarter;
-        return new Quarter(year, half, value);
+        return new CalendarQuarter(year, half, value);
     }
 }
