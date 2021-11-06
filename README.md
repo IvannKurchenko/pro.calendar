@@ -13,7 +13,7 @@ npm run serve
 ### Compiles and minifies for production
 Run with href because of GitHub pages setup.
 ```
-npm run build --base-href='https://ivannkurchenko.github.io/pro.calendar/dist/'
+npm run build
 ```
 
 ### Lints and fixes files
