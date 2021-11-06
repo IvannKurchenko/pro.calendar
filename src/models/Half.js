@@ -1,3 +1,5 @@
+import Quarter from "./Quarter";
+
 const {DateTime} = require("luxon");
 
 /**
@@ -8,6 +10,12 @@ export default class Half {
     constructor(year, half) {
         this.year = year;
         this.value = half;
+    }
+
+    quarters() {
+        let firstQuarter = Quarter.halfQuarter(this.year, this.value, 1);
+        let secondQuarter = Quarter.halfQuarter(this.year, this.value, 1);
+        return [firstQuarter, secondQuarter];
     }
 
     /**

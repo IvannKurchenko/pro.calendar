@@ -1,3 +1,5 @@
+import Month from "./Month";
+
 const {DateTime} = require("luxon");
 
 /**
@@ -11,9 +13,18 @@ export default class Quarter {
         this.value = quarter;
     }
 
+    months() {
+        return [
+            Month.quarterMonth(this.year, this.half, this.value, 1),
+            Month.quarterMonth(this.year, this.half, this.value, 2),
+            Month.quarterMonth(this.year, this.half, this.value, 3),
+        ];
+    }
+
     isCurrent() {
         let now = DateTime.now();
-        let currentQuarter = Math.ceil(now.month / 3);
+        let monthsPerQuarter = 3;
+        let currentQuarter = Math.ceil(now.month / monthsPerQuarter);
         return currentQuarter === this.value;
     }
 

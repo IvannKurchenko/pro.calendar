@@ -8,8 +8,9 @@ const {DateTime} = require("luxon");
  */
 export default class Month {
 
-    constructor(year, quarter, value) {
+    constructor(year, half, quarter, value) {
         this.year = year;
+        this.half = half;
         this.quarter = quarter;
         this.value = value;
         this.date = DateTime.fromObject({
@@ -81,9 +82,9 @@ export default class Month {
     /**
      * Create month model relatively to year quarter
      */
-    static quarterMonth(year, quarter, month) {
+    static quarterMonth(year, half, quarter, month) {
         let shift = (quarter - 1) * 3;
         let value = shift + month;
-        return new Month(year, quarter, value);
+        return new Month(year, half, quarter, value);
     }
 }

@@ -42,8 +42,8 @@
           </div>
         </div>
         <div class="columns is-centered is-flex-grow-1">
-          <div class="column" v-bind:key="halfNumber" v-bind:value="halfNumber" v-for="halfNumber in halfNumbers">
-            <HalfComponent v-bind:year="year" v-bind:half="halfNumber">
+          <div class="column" v-bind:key="half" v-bind:value="half" v-for="half in halfs">
+            <HalfComponent v-bind:half="half">
             </HalfComponent>
           </div>
         </div>
@@ -55,6 +55,7 @@
 <script>
 
 import HalfComponent from "./components/HalfComponent";
+import Year from "./models/Year";
 
 export default {
   name: 'App',
@@ -65,15 +66,15 @@ export default {
     let yearWeeksLeft = now.weeksInWeekYear - now.weekNumber;
     let yearWorkDaysLeft = "TODO";
     let yearWeekendsDaysLeft = "TODO";
-    let halfNumbers = [1, 2];
+
+    let year = new Year(now.year);
 
     return {
-      now: now,
-      year: now.year,
+      year: year,
       yearWeeksLeft: yearWeeksLeft,
       yearWorkDaysLeft: yearWorkDaysLeft,
       yearWeekendsDaysLeft: yearWeekendsDaysLeft,
-      halfNumbers: halfNumbers
+      halfs: year.halfs()
     }
   },
 

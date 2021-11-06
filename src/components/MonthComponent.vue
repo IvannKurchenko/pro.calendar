@@ -32,23 +32,20 @@
 </template>
 <script>
 
-import Month from "../models/Month";
 import DayComponent from "./DayComponent";
 
 export default {
   name: 'MonthComponent',
-  props: ['year', 'quarter', 'month'],
+  props: ['month'],
 
   data() {
-    let month = Month.quarterMonth(this.year, this.quarter, this.month);
-    let weeks = month.weeks();
     let headers = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
     return {
-      value: month.value,
-      name: month.name(),
-      isCurrent: month.isCurrent(),
-      weeks: weeks,
+      value: this.month.value,
+      name: this.month.name(),
+      isCurrent: this.month.isCurrent(),
+      weeks: this.month.weeks(),
       headers: headers
     }
   },
